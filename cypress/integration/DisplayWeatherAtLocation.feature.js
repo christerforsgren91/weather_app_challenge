@@ -1,7 +1,7 @@
 describe('weather info is displayed at user location', () => {
   it('is expected to be displayed on initial render', () => {
-    cy.visit("/")
-      onbeforeunload(window) {
+    cy.visit("/", ({
+      onBeforeLoad(window) {
         const stubLocation = {
           coords: {
             lattitude: 55.7842,
@@ -14,6 +14,8 @@ describe('weather info is displayed at user location', () => {
           }
         )
       }
+    }))
+    
     cy.get("[data-cy=weather-display]").within(() => {
       cy.get("[data-cy=temp]").should("contain", "17°C")
       cy.get("[data-cy=location]").should("contain", "Virum")
