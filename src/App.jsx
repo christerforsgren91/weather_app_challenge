@@ -18,7 +18,14 @@ class App extends Component {
   }
 
   render() {
-    return <div></div>;
+    return (<div data-cy='weather-display'>
+      <p data-cy='location'>
+        {this.state.city}
+      </p>
+      <p data-cy='temp'>  
+        {this.state.temperature}
+      </p>
+    </div>) 
   }
 }
 
