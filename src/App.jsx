@@ -15,7 +15,7 @@ class App extends Component {
     description: "",
   };
 
-  componentDidMount() {
+  componentDidMount() {    
     navigator.geolocation.getCurrentPosition(async (position) => {
       const openCageDatakey = process.env.REACT_APP_OPEN_CAGE;
       const openWeatherMapkey = process.env.REACT_APP_OPEN_WEATHER;
@@ -24,15 +24,14 @@ class App extends Component {
         `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${openCageDatakey}`
       );
       let weatherResponse = await axios.get(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&appid=${openWeatherMapkey}`
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,daily,alerts&units=metric&appid=${openWeatherMapkey}`
       );
       let city = getCity(locationResponse);
       this.setState({
         city: city,
         temperature: weatherResponse.data.current.temp,
         description: weatherResponse.data.current.weather[0].description,
-      });
-      debugger;
+      });      
     });
   }
 
