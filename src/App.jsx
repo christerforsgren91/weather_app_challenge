@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Container, Header, Segment } from 'semantic-ui-react'
+import WeatherContainer from './WeatherContainer'
 
 const getCity = (locationResponse) => {
   if (locationResponse.data.results[0].components.city === undefined) {
@@ -37,11 +39,15 @@ class App extends Component {
 
   render() {
     return (
-      <div data-cy="weather-display">
-        <p data-cy="location">{this.state.city}</p>
-        <p data-cy="temp">{this.state.temperature}</p>
-        <p data-cy="description">{this.state.description}</p>
-      </div>
+      <Container data-cy='weather-display' text textAlign='center'>
+        <Segment inverted>
+          <Header>Weather App</Header>
+        </Segment>
+        <WeatherContainer city={this.state.city} temperature={this.state.temperature} description={this.state.description}/>
+        <Segment>
+
+        </Segment>
+      </Container>
     );
   }
 }
