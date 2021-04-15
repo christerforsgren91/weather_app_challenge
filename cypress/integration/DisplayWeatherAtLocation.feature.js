@@ -28,6 +28,7 @@ describe("weather info is displayed at user location", () => {
     cy.get("[data-cy=weather-display]").within(() => {
       cy.get("[data-cy=temp]").should("contain", "7.74");
       cy.get("[data-cy=location]").should("contain", "Gothenburg");
+      cy.get("[data-cy=description]").should("contain", "clear sky");
     });
   });
 });
