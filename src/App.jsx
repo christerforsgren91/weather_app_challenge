@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Container, Header, Segment } from 'semantic-ui-react'
 import WeatherContainer from './WeatherContainer'
+import GraphHourlyTemp from './GraphHourlyTemp'
 
 const getCity = (locationResponse) => {
   if (locationResponse.data.results[0].components.city === undefined) {
@@ -15,6 +16,15 @@ class App extends Component {
     city: "",
     temperature: "",
     description: "",
+    hourlyData: [
+      {
+        x: [1, 2, 3],
+        y: [2, 6, 3],
+        type: 'scatter',
+        mode: 'lines+markers',
+        marker: {color: 'red'},
+      },          
+    ]
   };
 
   componentDidMount() {    
@@ -45,7 +55,7 @@ class App extends Component {
         </Segment>
         <WeatherContainer city={this.state.city} temperature={this.state.temperature} description={this.state.description}/>
         <Segment>
-
+          <GraphHourlyTemp data={this.state.hourlyData}/>
         </Segment>
       </Container>
     );
