@@ -1,7 +1,13 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
 
-const GraphHourlyTemp = (props) => {  
+const GraphHourlyTemp = (props) => { 
+  let hourTemp = []
+  if(props.data) {
+    props.data.forEach(hour => {
+      hourTemp.push(hour.temp)
+    })
+  }
     return (
       <Plot
         data={props.data}

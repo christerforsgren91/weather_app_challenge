@@ -39,10 +39,12 @@ class App extends Component {
         `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,daily,alerts&units=metric&appid=${openWeatherMapkey}`
       );
       let city = getCity(locationResponse);
+      
       this.setState({
         city: city,
         temperature: weatherResponse.data.current.temp,
         description: weatherResponse.data.current.weather[0].description,
+        weatherHourly: weatherResponse.data.hourly
       });      
     });
   }
@@ -55,7 +57,7 @@ class App extends Component {
         </Segment>
         <WeatherContainer city={this.state.city} temperature={this.state.temperature} description={this.state.description}/>
         <Segment>
-          <GraphHourlyTemp data={this.state.hourlyData}/>
+          <GraphHourlyTemp data={this.state.weatherHourly}/>
         </Segment>
       </Container>
     );
