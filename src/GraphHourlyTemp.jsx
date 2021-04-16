@@ -5,7 +5,8 @@ const GraphHourlyTemp = (props) => {
     return (
       <Plot
         data={props.data}
-        layout={ {width: 640, height: 480 } }
+        layout={ {width: 640, height: 480, margin: {l: 0, r: 0, t: 0, b: 20} } }
+        config={ {staticPlot: true} }        
       />
     );  
 }
