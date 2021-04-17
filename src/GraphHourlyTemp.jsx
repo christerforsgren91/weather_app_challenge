@@ -34,7 +34,10 @@ const GraphHourlyTemp = (props) => {
     return (
       <Plot
         data={data}
-        layout={ {width: 640, height: 320, margin: {l: 50, r: 30, t: 20, b: 80}, xaxis: { x: 'date', tickformat: '%y/%m/%d : %H.%M' } } }
+        layout={ {width: 640, height: 320, margin: {l: 40, r: 45, t: 20, b: 80},
+        xaxis: { x: 'date', tickformat: '%y/%m/%d : %H.%M' }, 
+        yaxis: { ticksuffix: '°C' }
+        } }
         config={ {staticPlot: true} }        
       />
     );  
