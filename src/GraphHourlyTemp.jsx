@@ -4,20 +4,27 @@ import Plot from 'react-plotly.js';
 const GraphHourlyTemp = (props) => { 
   let hourTemp = []
   let hourTime = []
-  let newHours = null
-  let date = null
+  let year, month, day, hours = null
+  let time = ''
   if(props.data) {
     props.data.forEach(hour => {      
-      hourTime.push(hour.dt)
+      year = new Date(hour.dt*1000).getFullYear()
+      month = new Date(hour.dt*1000).getMonth() + 1
+      day = new Date(hour.dt*1000).getDate()
+      hours = new Date(hour.dt*1000).getHours()
+      time = `${year}-${month}-${day} ${hours}`
+      hourTime.push(time)      
       hourTemp.push(hour.temp)      
     })
   }
+  
+  
   let data = [
     {
     x: hourTime,
-    y: hourTemp,
-    x: 'date',
+    y: hourTemp,    
     type: 'line',
+    
     //mode: 'lines+markers',
     //marker: {color: 'red'},
   },
@@ -27,7 +34,7 @@ const GraphHourlyTemp = (props) => {
     return (
       <Plot
         data={data}
-        layout={ {width: 640, height: 480, margin: {l: 20, r: 20, t: 20, b: 20} } }
+        layout={ {width: 640, height: 320, margin: {l: 50, r: 30, t: 20, b: 80}, xaxis: { x: 'date', tickformat: '%y/%m/%d : %H.%M' } } }
         config={ {staticPlot: true} }        
       />
     );  
